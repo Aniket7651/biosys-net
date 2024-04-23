@@ -1,0 +1,40 @@
+name: 'Deploy dotNet Pack'
+
+on: 
+    push:
+        tags: 
+            - 'v*'
+
+env:
+    PROJECT_PATH: "BioSySNet.csproj"
+    PACKAGE_OUT_DIR: ${{ github.workspace }}\output
+    NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
+
+jobs:
+    deploy:
+        name: "Deploy"
+        runs-on: 'windows-latest'
+        steps:
+        - name: 'checkouts'
+          uses: action/checkout@v2
+        
+        - name: 'Install Dotnet'
+          uses: action/setup-dotnet@v1
+          with:
+            dotnet-version: '3.1.x'
+
+        - name: 'Restore Packages'
+          run: dotnet restore ${{ env.PROJECT_PATH }}
+
+        - name: 'Build Project'
+          run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+
+        - name: 'Get Version'
+          id: version
+          uses: battila7/get-version-action@v2
+
+        - name: 'Pack Project'
+          run: dotnet pack ${{ env.PROJECT_PATH }} -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUT_DIR }}
+
+        - name: 'Push Package'
+          run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}\*.nupack -s ${{ env.NUGET_SOURCE_URL }} -k ${{ secrets.NUGET_AUTH_KEY }} --skip-duplicate

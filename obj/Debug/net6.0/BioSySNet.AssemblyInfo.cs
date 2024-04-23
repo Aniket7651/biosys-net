@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute(@"Bioinformatics is interdisciplinary to analyze biological data using computer science, I am starting to use a new package for bioinformatics and computational analysis build in C#, which can analyze biological data such as DNA, RNA and protein sequences, Bioloogical Databases Scrapping, As well as 'GEO Analysis' offers a variety of analyzes on RNA-seq. Preprocessing, parsing various biological file formats (FASTA, PDB, SOFT, FASTQ, etc.), BioSySNet also uses the Python interpreter to run some plotting (i.e. use IronPython to run the Python functions, ""so First you need to make sure that Python is installed on your machine"")")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+433f6d1cd630912c0b460a92753fab97a18e13b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("BioSySNet")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BioSySNet")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
