@@ -35,4 +35,4 @@ jobs:
           run: dotnet pack ${{ env.PROJECT_PATH }} -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUT_DIR }}
 
         - name: 'Push Package'
-          run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}\*.nupack -s ${{ env.NUGET_SOURCE_URL }} -k ${{ secrets.NUGET_AUTH_KEY }} --skip-duplicate
+          run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}\*.nupkg -s ${{ env.NUGET_SOURCE_URL }} -k ${{ secrets.NUGET_AUTH_KEY }}
