@@ -1,0 +1,36 @@
+
+Related to version information type command 'version' on core console
+
+ntfasta <location of the fasta file> -<header or seq or len or gc> -<csv or txt> <location of output file>.csv
+ntfasta: -header (return header of the file), -len (length of the seq in fasta), -seq (return sequence)
+
+fastq <location of the fastq file> [option] [option value]
+fastq options: -head <count no> or -phred <saveQualityScoreFile>.csv
+
+makealign <outputFilelocation>.sysalign <targetSingleSeqFilelocation>.fasta/txt <refMultiSeqFile>.fasta/txt
+
+align <targetSingleSeqFilelocation>.fasta/txt <refSingleSeqFilelocation>.fasta/txt encoding=TRUE
+align: last one 'encoding=TRUE' is use for visualize backtracking steps where, 0 = horizontal ,1 = vertical ,2 = digonal
+
+rf <filelocation|name> 
+rf: stands for remove file, which use to remove a file from the current path
+
+mf <fileName>
+mf: stands for make file, which make a file at the current path
+
+rd <folderName>
+rd: stands for remove folder, use to remove a folder from the current path, if it's exists
+
+md <folderName>
+md: for make a folder at the current path
+
+lsloc 
+lsloc: listout the files and folder at the current working directory
+
+chloc <file|folderlocation> | ..
+chloc: change directory location by full path of the file or folder, also use '..' in the place of filea or folder location, for moving a step back
+
+clr: command for clearing console
+
+author: command to print name and contact of the contributor, you can also use 'contributor' command in the place of 'author' command
+

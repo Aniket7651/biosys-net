@@ -1,0 +1,83 @@
+{
+  "format": 1,
+  "restore": {
+    "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj": {}
+  },
+  "projects": {
+    "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj",
+        "projectName": "BioSySNet",
+        "projectPath": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj",
+        "packagesPath": "C:\\Users\\lenovo\\.nuget\\packages\\",
+        "outputPath": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\bin\\Debug": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.50, )"
+            },
+            "IronPython": {
+              "target": "Package",
+              "version": "[3.4.1, )"
+            },
+            "MathNet.Numerics": {
+              "target": "Package",
+              "version": "[4.9.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

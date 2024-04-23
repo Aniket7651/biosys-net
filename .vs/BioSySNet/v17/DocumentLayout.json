@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\biosysnet.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:biosysnet.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\descriptiveanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:descriptiveanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\edirectconf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:edirectconf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BioSySNet",
+              "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj",
+              "RelativeDocumentMoniker": "BioSySNet.csproj",
+              "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj",
+              "RelativeToolTip": "BioSySNet.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-23T08:35:53.384Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-09T12:42:49.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "descriptiveAnalysis.cs",
+              "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\descriptiveAnalysis.cs",
+              "RelativeDocumentMoniker": "descriptiveAnalysis.cs",
+              "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\descriptiveAnalysis.cs",
+              "RelativeToolTip": "descriptiveAnalysis.cs",
+              "ViewState": "AQIAAF0AAAAAAAAAAAAAACABAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T06:52:09.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "edirectConf.cs",
+              "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\edirectConf.cs",
+              "RelativeDocumentMoniker": "edirectConf.cs",
+              "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\edirectConf.cs",
+              "RelativeToolTip": "edirectConf.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAIwB0AAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-10T05:46:15.779Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

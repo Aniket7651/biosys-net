@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>BioSySNet</id>
+    <version>1.0.0</version>
+    <authors>BioSySNet</authors>
+    <description>Package Description</description>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="HtmlAgilityPack" version="1.11.50" exclude="Build,Analyzers" />
+        <dependency id="IronPython" version="3.4.1" exclude="Build,Analyzers" />
+        <dependency id="MathNet.Numerics" version="4.9.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/net6.0/design-removebg-preview.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\bin\Debug\net6.0\BioSySNet.dll" target="lib\net6.0\BioSySNet.dll" />
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\design-removebg-preview.ico" target="content\design-removebg-preview.ico" />
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\design-removebg-preview.ico" target="contentFiles\any\net6.0\design-removebg-preview.ico" />
+  </files>
+</package>

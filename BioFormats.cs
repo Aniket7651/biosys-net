@@ -1,0 +1,333 @@
+/*
+~BioFormats.cs 
+file contains programs related to the biological file formats such as,
+FASTA, FASTQ, PDB etc.. also the progams that's contains in this file can perform
+on creating alignment file as *.sysalign, csv file from FASTA and FASTQ file for making dataset
+
+@ Author: ANIKET YADAV (aniketyadav8687@gmail.com)
+*/
+
+using System;
+using System.IO.Compression;
+using System.Net;
+using System.Diagnostics;
+using IronPython.Compiler.Ast;
+using IronPython.Runtime.Operations;
+using HtmlAgilityPack;
+
+
+namespace BioSySNet
+{
+#pragma warning disable
+
+    public class BioFormats
+    {
+        static string AutoFormatSelector(string path) {
+            string[] form = path.Split('.');
+            return form.Last();
+        }
+
+        public struct PDBvars
+        {
+            public string? title, header;
+            public List<List<string>>? atoms;
+        }
+
+        public PDBvars PDBReader(string path_pdbFile)
+        {
+            List<List<string>> atom = new();
+            string title = ""; string head = "";
+
+            static string TagsToString(string line, string T)
+            {
+                string removedline = line.Replace("\n", " ");
+                string content = removedline.Replace(T, "");
+                return content;
+            }
+
+            string[] lines = File.ReadAllLines(path_pdbFile);
+            foreach (string line in lines)
+            {
+                string tag = line.Split(' ')[0];
+                if (tag.Contains("ATOM"))
+                {
+                    List<string> lineLis = new();
+                    foreach (string item in line.Split(" "))
+                    {
+                        if (item != "") {
+                            lineLis.Add(item);
+                            Console.Write(item + '\t');
+                        }
+                    } atom.Add(lineLis);
+                    Console.Write('\n');
+                }
+                if (tag.Contains("HEADER"))
+                {
+                    head += TagsToString(line, "HEADER");
+                }
+                if (tag.Contains("TITLE"))
+                {
+                    title += TagsToString(line, "TITLE");
+                }
+            }
+            var pdbvars = new PDBvars() { atoms = atom, header = head, title = title };
+            return pdbvars;
+        }
+
+
+        public class FASTA {
+            public string? Header, Seq;
+            public string[]? MultiHeader, MultiSeq;
+            public int Len, readLen;
+        }
+
+        public FASTA Readfasta(string path) {
+            string[] reads = File.ReadAllLines(path);
+            string seq = "";
+            for (int i = 1; i <= reads.Length - 1; i++) {
+                string replacedNewLine = reads[i].Replace("\n", "");
+                seq += replacedNewLine;
+            }
+            var fastaInfo = new FASTA {
+                Header = reads[0].Replace("\n", ""),
+                Seq = seq,
+                Len = seq.Length };
+            return fastaInfo;
+        }
+
+        public FASTA multiFASTAread(string path) {
+            List<string> header = new List<string>();
+            string seqs = "";
+            string[] reads = File.ReadAllLines(path);
+            foreach (string line in reads) {
+                if (line.Contains('>')) {
+                    header.Add(line); seqs += " ";
+                }
+                else { seqs += line; }
+            }
+            string[] seqarr = seqs.Split(' ');
+            var fastainfo = new FASTA {
+                readLen = seqs.Split(' ').Length - 1,
+                MultiHeader = header.ToArray(),
+                MultiSeq = seqarr.Skip(1).ToArray()
+            };
+            return fastainfo;
+        }
+
+        public void PDBFileFormat(string pdbId, string format = "pdb")
+        {
+            // <a href="//files.rcsb.org/download/4U5X.cif">PDBx/mmCIF Format</a> pdb file download link
+            if (format == "cif") {
+                Process.Start(new ProcessStartInfo() {
+                    FileName = $"https://files.rcsb.org/download/{pdbId}.cif",
+                    UseShellExecute = true
+                });
+            } else {
+                Process.Start(new ProcessStartInfo() {
+                    FileName = $"https://files.rcsb.org/download/{pdbId}.pdb",
+                    UseShellExecute = true
+                });
+            }
+        }
+
+        public Dictionary<string, string> ReadFASTQ(string path) {
+            List<string> seqs = new(); List<string> ascii = new();
+            var pairsDNA_ASCII = new Dictionary<string, string>();
+            string[] reads = File.ReadAllLines(path);
+            bool cont = true;
+            for (int line = 1; line < reads.Length + 1; line++) {
+                if (line % 2 != 0) {
+                    if (cont == true) {
+                        seqs.Add(reads[line]);
+                        cont = false;
+                    } else { ascii.Add(reads[line]); cont = true; }
+                } }
+            for (int i = 0; i < seqs.Count; i++) {
+                try { pairsDNA_ASCII.Add(seqs[i], ascii[i]); }
+                catch (System.ArgumentException) { continue; }   // Argument exception occure's in the case of duplicate key found
+            }
+            return pairsDNA_ASCII;
+        }
+
+        public void NeucleotideFastaDataset(string fastaPath, string path_csv) {
+            BioTools BioInstanse = new();
+            var aId = new List<string>(); List<int> nT = new();
+            var gcp = new List<float>(); List<int> nG = new();
+            var atp = new List<float>(); List<int> nC = new();
+            var lens = new List<int>(); List<int> nA = new();
+
+            var fasta = multiFASTAread(fastaPath);
+            foreach (string header in fasta.MultiHeader) {
+                string[] assId = header.Split(" ");
+                aId.Add(assId[0].Replace(">", ""));
+            }
+            foreach (string seq in fasta.MultiSeq) {
+                var content = BioInstanse.ATGC_Content(seq);
+                float gc_percent = BioInstanse.GCP(seq); float at_percent = BioInstanse.ATP(seq);
+                gcp.Add(gc_percent); lens.Add(seq.Length); atp.Add(at_percent);
+                nA.Add(content.Item1); nT.Add(content.Item2); nG.Add(content.Item3); nC.Add(content.Item4);
+            }
+            using StreamWriter writer = new(path_csv);
+            writer.WriteLine(" ,Aid,GC_percent,AT_percent,IndividualLength,no_A,no_T,no_G,no_C");
+            for (int i = 0; i < aId.Count; i++)
+            {
+                writer.WriteLine($"{i},{aId[i]},{gcp[i]},{atp[i]},{lens[i]},{nA[i]},{nT[i]},{nG[i]},{nC[i]}");
+                if (i < 5) { Console.WriteLine($"{i},{aId[i]},{gcp[i]},{atp[i]},{lens[i]},{nA[i]},{nT[i]},{nG[i]},{nC[i]}"); }
+            }
+        }
+
+        public void AlignmentFile(string fileLoc, string singleFASTALoc, string multifastaRefFileLoc) {
+            BioTools tools = new();
+            var target = Readfasta(singleFASTALoc); var template = multiFASTAread(multifastaRefFileLoc);
+            var alignment = tools.MultipleAlignment(target.Seq, template.MultiSeq);
+            using StreamWriter file = new(fileLoc, false);
+            for (int i = 0; i < alignment.similarity.Length; i++) {
+
+                file.WriteLine('>' + template.MultiHeader[i] + " target_len " + target.Seq.Length + " temp_len " + template.MultiSeq[i].Length);
+                file.WriteLine("~ Alignment_length: " + alignment.target[i].Length + $" temp count {i}");
+                file.WriteLine("~ target_gap " + alignment.target[i].Count(gap => gap == '-') +
+                    " temp_gap " + alignment.temp[i].Count(gap => gap == '-') + " identical " + alignment.similarity[i].Count(s => s == '|'));
+
+                file.WriteLine("target    :" + alignment.target[i]);
+                file.WriteLine("identical :" + alignment.similarity[i]);
+                file.WriteLine($"temp      :" + alignment.temp[i]);
+                file.WriteLine("~ encs" + i + " encode_len " + alignment.encodes[i].Length);
+                file.WriteLine("encodes   :" + alignment.encodes[i]);
+                file.WriteLine(">>>" + '\n');
+            }
+        }
+
+        public void GetGEO(string gseAccession, string outputLoc, bool soft = false)
+        {                                               // AdditionalFiles={soft, miniml, matrix}
+            string dynGSEcode = GSEXXnnn(gseAccession);
+            var GEOFile = GetGEOFileName(gseAccession);
+
+            foreach (string filename in GEOFile)
+            {
+                string url = $"https://ftp.ncbi.nlm.nih.gov/geo/series/{dynGSEcode}/{gseAccession}/suppl/{filename}";
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(url, outputLoc + '\\' + filename);
+                }
+            }
+
+            if (soft)
+            {
+                string gunZipFile = outputLoc + '\\' + gseAccession + "_family.soft.gz";
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile($"https://ftp.ncbi.nlm.nih.gov/geo/series/{dynGSEcode}/{gseAccession}/soft/{gseAccession}_family.soft.gz",
+                        gunZipFile);
+                }
+            }
+        }
+
+        private string GSEXXnnn(string gseAccession)
+        {
+            string dynamicGSEnnn = "";
+            for (int i = gseAccession.Length - 4; i > -1; i--) { dynamicGSEnnn += gseAccession[i]; }
+            char[] dynToChar = dynamicGSEnnn.ToCharArray();
+            Array.Reverse(dynToChar);
+            string dynGSEcode = new string(dynToChar) + "nnn";
+            return dynGSEcode;
+        }
+
+        private List<string> GetGEOFileName(string gseID)
+        {
+            descriptiveAnalysis duplicateRemoval = new descriptiveAnalysis();
+            var doc = new HtmlWeb();
+            var con = doc.Load($"https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={gseID}");
+            var node = con.DocumentNode.SelectNodes("html/body/table/tr/td/table");
+            List<string> fileName = new List<string>();
+            string[] CacheArr = node[5].InnerText.Trim().Split('\n');
+            for (int i = 0; i < CacheArr.Length; i++) {
+                if (CacheArr[i] == "File type/resource")
+                {
+                    fileName.Add(CacheArr[i + 2]);
+                }
+                if (CacheArr[i].Contains(".gz") || CacheArr[i].Contains(".tar") ||
+                    CacheArr[i].Contains(".xlsx")) { fileName.Add(CacheArr[i]); }
+            }
+            List<string> removedDuplicateFiles = duplicateRemoval.RemoveDuplicate(fileName);
+            return removedDuplicateFiles;
+        }
+
+        public void GetGEOBySOFT(string gseAccession, string outputLoc)
+        {
+            string dynGSEcode = GSEXXnnn(gseAccession);
+            string gunZipFile = outputLoc + '\\' + gseAccession + "_family.soft.gz";
+            using (var client = new WebClient())
+            {
+                client.DownloadFile($"https://ftp.ncbi.nlm.nih.gov/geo/series/{dynGSEcode}/{gseAccession}/soft/{gseAccession}_family.soft.gz",
+                    gunZipFile);
+            }
+            string remoteSoftFileLoc = outputLoc + '\\' + gseAccession + "_family.soft";
+            Ungzip(gunZipFile, remoteSoftFileLoc);
+            var softReader = ReadSoftFile(remoteSoftFileLoc);
+            string[] filename = softReader.SeriesSupplementaryFile.Split('|');
+
+            foreach (string file in filename)
+            {
+                Console.WriteLine(file.Trim());
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(file.Trim(), outputLoc + '\\' + file.Split('/').Last());
+                }
+            }
+        }
+
+        public struct SoftFileData
+        {
+            public string? SeriesTitle, SeriesAccession, SeriesSummary;
+            public string? SeriesSampleID, SeriesSupplementaryFile;
+
+            public string? PlatformID, PlatformTitle, PlatformTechnology, PlatformOrganism;
+
+            public Dictionary<string, string> SAMPLES;
+        }
+
+        public SoftFileData ReadSoftFile(string filename)
+        {
+            string[] lines = File.ReadAllLines(filename);
+            SoftFileData softFileData = new SoftFileData();
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string ValueLine = lines[i].Split('=')[1].Replace('\n', ' ');
+                if (lines[i].Contains("!Series_title")) {
+                    softFileData.SeriesTitle = ValueLine; }
+                else if (lines[i].Contains("!Series_geo_accession")) {
+                    softFileData.SeriesAccession = ValueLine; }
+                else if (lines[i].Contains("!Series_summary")) {
+                    softFileData.SeriesSummary = ValueLine; }
+                else if (lines[i].Contains("!Series_sample_id")) {
+                    softFileData.SeriesSampleID += ValueLine + ' '; }
+                else if (lines[i].Contains("!Series_supplementary_file")) {
+                    softFileData.SeriesSupplementaryFile += ValueLine + '|'; }
+                else if (lines[i].Contains("!Platform_geo_accession")) {
+                    softFileData.PlatformID = ValueLine; }
+                else if (lines[i].Contains("!Platform_title")) {
+                    softFileData.PlatformTitle = ValueLine; }
+                else if (lines[i].Contains("!Platform_technology")) {
+                    softFileData.PlatformTechnology = ValueLine; }
+                else if (lines[i].Contains("!Platform_organism")) {
+                    softFileData.PlatformOrganism = ValueLine; }
+            }
+            return softFileData;
+        }
+
+        private void Ungzip(string gzipLocation, string Newloc)
+        {
+            FileInfo file = new FileInfo(gzipLocation);
+            using (FileStream originalStream = file.OpenRead()) {
+                using (FileStream outputStream = File.Create(Newloc)) {
+                    using (GZipStream gZipStream = new GZipStream(originalStream,
+                                                                 CompressionMode.Decompress))
+                    {
+                        gZipStream.CopyTo(outputStream);
+                    }
+                }
+            }
+        } 
+        // read soft file, matrix file, SAM file
+    }
+}

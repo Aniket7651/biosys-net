@@ -1,0 +1,26 @@
+                                           
+        ,---,.                   .--.--.              .--.--.    
+      ,'  .'  \  ,--,           /  /    '.           /  /    '.  
+    ,---.' .' |,--.'|    ,---. |  :  /`. /          |  :  /`. /  
+    |   |  |: ||  |,    '   ,'\;  |  |--`           ;  |  |--`   
+    :   :  :  /`--'_   /   /   |  :  ;_         .--,|  :  ;_     
+    :   |    ; ,' ,'| .   ; ,. :\  \    `.    /_ ./| \  \    `.  
+    |   :     \'  | | '   | |: : `----.   \, ' , ' :  `----.   \ 
+    |   |   . ||  | : '   | .; : __ \  \  /___/ \: |  __ \  \  | 
+    '   :  '; |'  : |_|   :    |/  /`--'  /.  \  ' | /  /`--'  / 
+    |   |  | ; |  | '.'\   \  /'--'.     /  \  ;   :'--'.     /  
+    |   :   /  ;  :    ;`----'   `--'---'    \  \  ;  `--'---'   
+    |   | ,'   |  ,   /                       :  \  \       
+    `----'      ---`-'                         \  ' ;  <banner: https://manytools.org>         
+                                                `--`                                                    
+BioSyS Tool Release version 0.1.0 "berry bloom"
+Author by "Aniket yadav", Btech Bioinformatics 4th year
+From "Dpt. of Computational Biology and Bioinformatics, JIBB, SHUATS, Alld".
+
+Welcome to BioSyS, a Bioinformatics Console Tool for performing different
+tasks or analysis related to Biological sequences like; DNA, RNA & proteins.
+
+For more about BioSyS type 'description' or 'readme' or 'help()', and also 
+about license type 'license()'
+Quit or exit to the application by type 'kill' or 'q()' or 'quit()'
+
