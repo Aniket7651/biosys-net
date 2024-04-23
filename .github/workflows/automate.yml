@@ -16,10 +16,10 @@ jobs:
         runs-on: 'windows-latest'
         steps:
         - name: 'checkouts'
-          uses: action/checkout@v2
+          uses: actions/checkout@v2
         
         - name: 'Install Dotnet'
-          uses: action/setup-dotnet@v1
+          uses: actions/setup-dotnet@v1
           with:
             dotnet-version: '3.1.x'
 
