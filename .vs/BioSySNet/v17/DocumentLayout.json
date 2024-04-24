@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\.github\\workflows\\automate.yml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:.github\\workflows\\automate.yml||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\edirectconf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,10 +13,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\descriptiveanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:descriptiveanalysis.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,19 +27,6 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "automate.yml",
-              "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\.github\\workflows\\automate.yml",
-              "RelativeDocumentMoniker": ".github\\workflows\\automate.yml",
-              "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\.github\\workflows\\automate.yml",
-              "RelativeToolTip": ".github\\workflows\\automate.yml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACQAAABwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
-              "WhenOpened": "2024-04-23T09:09:35.415Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -51,7 +34,8 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T12:42:49.736Z"
+              "WhenOpened": "2024-03-09T12:42:49.736Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -61,9 +45,10 @@
               "RelativeDocumentMoniker": "descriptiveAnalysis.cs",
               "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\descriptiveAnalysis.cs",
               "RelativeToolTip": "descriptiveAnalysis.cs",
-              "ViewState": "AQIAAF0AAAAAAAAAAAAAACABAAAeAAAA",
+              "ViewState": "AQIAAFsAAAAAAAAAAABBwCABAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T06:52:09.773Z"
+              "WhenOpened": "2024-03-11T06:52:09.773Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -75,7 +60,8 @@
               "RelativeToolTip": "edirectConf.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-10T05:46:15.779Z"
+              "WhenOpened": "2024-03-10T05:46:15.779Z",
+              "EditorCaption": ""
             }
           ]
         }

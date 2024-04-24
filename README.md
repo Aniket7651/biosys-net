@@ -1,8 +1,7 @@
-# <code style="font-size: 30px">C# For Bioinformatics and Biological Data Processing: BioSyS.Net</code>
+# `C# For Bioinformatics and Biological Data Processing: BioSyS.Net`
 
-<p align="center" width="100%">
-    <a href='https://www.nuget.org/packages/BioSySNet'><img src="removebg-logo.ico" alt="BioSyS_logo"></a>
-</p>
+
+[![BioSyS_logo](https://raw.githubusercontent.com/Aniket7651/biosys-net/master/removebg-logo.ico)](https://www.nuget.org/packages/BioSySNet)
 
 ![net](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
 ![nuget](https://img.shields.io/badge/NuGet-004880?style=for-the-badge&logo=nuget&logoColor=white)
@@ -11,7 +10,7 @@
 
 `Bioinformatics` is an interdisciplinary field that analyzes biological data using computer science. I have created a new package for bioinformatics and computational analysis built in C#. This package can analyze biological data such as DNA, RNA, and protein sequences, as well as perform tasks such as Biological Database Scraping. Additionally, `'GEO Analysis'` offers a variety of analyses for RNA-seq preprocessing, parsing various biological file formats (FASTA, PDB, SOFT, FASTQ, etc.). [BioSySNet](https://www.nuget.org/packages/BioSySNet) also utilizes the Python interpreter to run certain plotting functions (i.e., it uses IronPython to execute Python functions, "so first, you need to make sure that Python is installed on your machine").
 
-# ` Features `
+## `Features`
 - Scrape useful information from various databases like, DrugBank, UnipProt, PDB etcand PDB.
 - Download and parse some of the important biological file formats such as .pdb, .fasta, .fastq, .soft, and CSV.
 - Built-in statistical functions for differential expression analysis and pre-processing.
@@ -21,7 +20,7 @@
 - Built-in data structures for data science and statistics.
 
 
-# <code>Requirements</code>
+## `Requirements`
 BioSyS requires Python on your machine for plotting and for providing some functionalities. First of all, download the Python 3.x version. Then, download the supported version of BioSyS and configure it to your Python interpreter.
 ### Softwares Requirement:
 - [.Net](https://dotnet.microsoft.com/en-us/) >= 5.0.x
@@ -34,20 +33,20 @@ BioSyS requires Python on your machine for plotting and for providing some funct
 - [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) == 4.11.0
 - [seaborn](https://pypi.org/project/seaborn/) >= 0.12.1
 
-# <code>Download</code>
-You can easly download the package with nuget package manager:</br>
+## `Download`
+You can easly download the package with nuget package manager:
 ```
-PM> NuGet\Install-Package BioSySNet -Version 0.0.1
+PM> NuGet\Install-Package BioSySNet -Version 0.0.2
 ```
-OR</br>
+OR
 
-Can also be installed by CLI using dotnet:</br>
+Can also be installed by CLI using dotnet:
 ```
-> dotnet add package BioSySNet --version 0.0.1
+> dotnet add package BioSySNet --version 0.0.2
 ```
 
-# ` Uses `
+## `Uses`
 
 COMING SOON....
 
-<code style="background: red">Sometimes the features of Python functions can be defective and cause errors!</code>
+`Sometimes the features of Python functions can be defective and cause errors!`
