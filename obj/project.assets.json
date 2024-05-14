@@ -8,25 +8,21 @@
           "System.CodeDom": "6.0.0"
         },
         "compile": {
-          "lib/net6.0/Microsoft.Dynamic.dll": {
-            "related": ".xml"
-          },
+          "lib/net6.0/Microsoft.Dynamic.dll": {},
           "lib/net6.0/Microsoft.Scripting.Metadata.dll": {
             "related": ".xml"
           },
           "lib/net6.0/Microsoft.Scripting.dll": {
-            "related": ".Metadata.xml;.xml"
+            "related": ".Metadata.xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Microsoft.Dynamic.dll": {
-            "related": ".xml"
-          },
+          "lib/net6.0/Microsoft.Dynamic.dll": {},
           "lib/net6.0/Microsoft.Scripting.Metadata.dll": {
             "related": ".xml"
           },
           "lib/net6.0/Microsoft.Scripting.dll": {
-            "related": ".Metadata.xml;.xml"
+            "related": ".Metadata.xml"
           }
         }
       },
@@ -60,7 +56,7 @@
             "related": ".xml"
           },
           "lib/net6.0/IronPython.dll": {
-            "related": ".Modules.xml;.SQLite.xml;.Wpf.xml;.xml"
+            "related": ".Modules.xml;.SQLite.xml;.Wpf.xml"
           }
         },
         "runtime": {
@@ -74,21 +70,17 @@
             "related": ".xml"
           },
           "lib/net6.0/IronPython.dll": {
-            "related": ".Modules.xml;.SQLite.xml;.Wpf.xml;.xml"
+            "related": ".Modules.xml;.SQLite.xml;.Wpf.xml"
           }
         }
       },
       "MathNet.Numerics/4.9.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/MathNet.Numerics.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/MathNet.Numerics.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/MathNet.Numerics.dll": {
-            "related": ".xml"
-          }
+          "lib/netstandard2.0/MathNet.Numerics.dll": {}
         }
       },
       "Mono.Unix/7.1.0-final.1.21458.1": {
@@ -214,15 +206,12 @@
         "lib/net452/Microsoft.Dynamic.dll",
         "lib/net452/Microsoft.Dynamic.xml",
         "lib/net452/Microsoft.Scripting.Metadata.dll",
-        "lib/net452/Microsoft.Scripting.Metadata.xml",
         "lib/net452/Microsoft.Scripting.dll",
         "lib/net452/Microsoft.Scripting.xml",
         "lib/net6.0/Microsoft.Dynamic.dll",
-        "lib/net6.0/Microsoft.Dynamic.xml",
         "lib/net6.0/Microsoft.Scripting.Metadata.dll",
         "lib/net6.0/Microsoft.Scripting.Metadata.xml",
         "lib/net6.0/Microsoft.Scripting.dll",
-        "lib/net6.0/Microsoft.Scripting.xml",
         "lib/netcoreapp3.1/Microsoft.Dynamic.dll",
         "lib/netcoreapp3.1/Microsoft.Dynamic.xml",
         "lib/netcoreapp3.1/Microsoft.Scripting.Metadata.dll",
@@ -297,7 +286,6 @@
         "ironpython.3.4.1.nupkg.sha512",
         "ironpython.nuspec",
         "lib/net462/IronPython.Modules.dll",
-        "lib/net462/IronPython.Modules.xml",
         "lib/net462/IronPython.SQLite.dll",
         "lib/net462/IronPython.SQLite.xml",
         "lib/net462/IronPython.Wpf.dll",
@@ -311,7 +299,6 @@
         "lib/net6.0/IronPython.Wpf.dll",
         "lib/net6.0/IronPython.Wpf.xml",
         "lib/net6.0/IronPython.dll",
-        "lib/net6.0/IronPython.xml",
         "lib/netcoreapp3.1/IronPython.Modules.dll",
         "lib/netcoreapp3.1/IronPython.Modules.xml",
         "lib/netcoreapp3.1/IronPython.SQLite.dll",
@@ -343,7 +330,6 @@
         "lib/netstandard1.3/MathNet.Numerics.dll",
         "lib/netstandard1.3/MathNet.Numerics.xml",
         "lib/netstandard2.0/MathNet.Numerics.dll",
-        "lib/netstandard2.0/MathNet.Numerics.xml",
         "mathnet.numerics.4.9.0.nupkg.sha512",
         "mathnet.numerics.nuspec"
       ]

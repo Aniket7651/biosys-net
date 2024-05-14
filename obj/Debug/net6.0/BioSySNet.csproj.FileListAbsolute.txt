@@ -88,3 +88,4 @@ A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\bin\Debug\net6.0\runtimes\tvos-arm64
 A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\bin\Debug\net6.0\runtimes\tvossimulator-x64\native\libMono.Unix.a
 A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\obj\Debug\net6.0\BioSySNet.csproj.Up2Date
 A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\obj\Debug\net6.0\BioSySNet.genruntimeconfig.cache
+A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\obj\Debug\net6.0\BioSySNet.sourcelink.json

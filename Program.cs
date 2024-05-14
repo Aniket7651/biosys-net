@@ -1,6 +1,6 @@
 ﻿
 //////////// ////// //////// STATEMENTS UNDER TESTING BY CONSOLE APPLICATION //////// ////// ///////////////
-//////////// ////// ////////        PAKAGING OCCUERS IN CLASS LIBRARY        //////// ////// ///////////////
+//////////// ////// ////////        PAKAGING PERFORM BY CLASS LIBRARY        //////// ////// ///////////////
 
 
 //BioSySNet.drugScraping scrap = new BioSySNet.drugScraping();
@@ -8,11 +8,13 @@
 //BioSySNet.BioTools seqtools = new BioSySNet.BioTools();
 //PyConfiguration.Config config = new PyConfiguration.Config();
 //BioSySNet.csvReader csvArr = new();
+//BioSySNet.BioTools.QualityControlling QC = new();
 //BioSySNet.descriptiveAnalysis arraysFunc = new BioSySNet.descriptiveAnalysis();
 //BioSySNet.GEOCSVTable csv = new();
 //BioSySNet.Statistics sts = new BioSySNet.Statistics();
 //BioSySNet.GEOAnalysis geo = new();
 // config.RequiredModules();
+
 //var soft = fileformat.ReadSoftFile("B:\\Major_project\\dataFolder\\GSE129046_family\\GSE129046_family.soft");
 //Console.WriteLine(soft.SeriesTitle);
 //Console.WriteLine(soft.SeriesSampleID);
@@ -136,8 +138,8 @@
 //     }Console.WriteLine();
 // }  
 // "ATGGTTGCCACGTAGGGCGGTCGAAAGTCGCCCCCCTCGTTCAA"
-// var fastq = funcs.ReadFASTQ("A:/PROJECTS/out_1000_ERR101899.1.fastq");
-// int[ , ] qaulityProbapility = seqtools.Quality(fastq);
+// var fastq = fileformat.ReadFASTQ("A:/PROJECTS/out_1000_ERR101899.1.fastq");
+// int[ , ] qaulityProbapility = QC.Quality(fastq);
 
 // for(int i = 0; i < qaulityProbapility.GetLength(0); i++){
 //     for(int j = 0; j < qaulityProbapility.GetLength(1); j++){
@@ -157,6 +159,6 @@
 // scrap.UniProtSeq("P05067");
 
 // funcs.FastaDataset(fastaPath: "A:/PROJECTS/test.txt", path_csv:"A:/PROJECTS/sample.csv");
-// float Mw = seqtools.MeltingPoint("ACGTACGTACG");
-// Console.WriteLine(" " + Mw);
+//float Mw = seqtools.MeltingPoint("ACGTACGTACG");
+//Console.WriteLine(" " + Mw);
 // scrap.fastaFile("OQ622003.1");

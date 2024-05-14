@@ -15,7 +15,7 @@ namespace BioSySNet
 namespace PyConfiguration
 {
     /// <summary>
-    /// Related to all python configurations and setup programs
+    /// Related to all python configurations and setup programs for python
     /// </summary>
     public class Config
     {
@@ -28,6 +28,7 @@ namespace PyConfiguration
             StreamWriter writer = new(conf_pyC3, false);
             writer.WriteLine($"ENVPATH=\"{pythonPath}\"");
             writer.Close();
+            Console.WriteLine($"{pythonPath} attachment completed...");
         }
 
         private string ReadENV()

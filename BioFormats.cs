@@ -328,6 +328,6 @@ namespace BioSySNet
                 }
             }
         } 
-        // read soft file, matrix file, SAM file
+        // matrix file, SAM file
     }
 }

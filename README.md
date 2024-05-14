@@ -47,6 +47,9 @@ Can also be installed by CLI using dotnet:
 
 ## `Uses`
 
-COMING SOON....
+Go through the Medium Link:
+- [Part 1 (Configure Python, Class BioTools and BioFormats)](https://medium.com/@aniketyadav8687/biosys-net-c-for-bioinformatics-and-computational-analysis-part-1-c8d8310e7005)
+
+`In the next Part, we will discuss about classes for statistical analysis on biological data (GEOAnalysis, GEOCSVTable, Statistics and descriptiveAnalysis classes of BioSySNet) and scraping information from Drug Bank (drugScraping class of BioSySNet).`
 
 `Sometimes the features of Python functions can be defective and cause errors!`
