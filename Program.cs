@@ -4,18 +4,62 @@
 
 
 //BioSySNet.drugScraping scrap = new BioSySNet.drugScraping();
-//BioSySNet.BioFormats fileformat = new BioSySNet.BioFormats();
+BioSySNet.BioFormats fileformat = new BioSySNet.BioFormats();
 //BioSySNet.BioTools seqtools = new BioSySNet.BioTools();
-//PyConfiguration.Config config = new PyConfiguration.Config();
-//BioSySNet.csvReader csvArr = new();
+// PyConfiguration.Config config = new PyConfiguration.Config();
+BioSySNet.CSVArray csvArr = new();
+// BioSySNet.BioFormats formats = new();
+// var soft = formats.ReadSoftMetaData("C:\\Users\\lenovo\\Downloads\\GSE17193_family.soft");
+// foreach (string v in soft.SeriesSampleID.Split(',').SkipLast(1)){ Console.WriteLine(v); }
+
+BioSySNet.ImportData import = new();
+// List<object> newl = new List<object>(){2,6,8,3,2};
+fileformat.ArrayExpressions("C:\\Users\\lenovo\\Downloads\\GSE17193_family.soft", 
+     "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\");
+// var data = import.FromCommaDelim("A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\sample.csv");
+// var data2 = import.FromCommaDelim("A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\s2.csv");
+// BioSySNet.DataFrame affyFrame = new(data, defaultTypes: true);
+// Console.WriteLine(data[1][1].GetType());
+// BioSySNet.DataFrame dataFrame = new(data, defaultTypes: true);
+// dataFrame.Merge(data2, "h1");
+// // dataFrame.Stats(saveLogs: "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\");
+// foreach (var row in dataFrame.Stats())
+// {
+//      foreach (object item in row)
+//      {
+//           Console.Write(item + "\t\t");
+//      } Console.WriteLine();
+// }
+// affyFrame.SortedIndxInCol(newl);
+// foreach (object item in data[0])
+//      {
+//           Console.Write(item + "\t\t");
+//      }
 //BioSySNet.BioTools.QualityControlling QC = new();
 //BioSySNet.descriptiveAnalysis arraysFunc = new BioSySNet.descriptiveAnalysis();
 //BioSySNet.GEOCSVTable csv = new();
 //BioSySNet.Statistics sts = new BioSySNet.Statistics();
-//BioSySNet.GEOAnalysis geo = new();
+// BioSySNet.GEOAnalysis geo = new();
 // config.RequiredModules();
+// List<List<object>> affyData = geo.IGetExpression(GSMID: "GSM3462691"); // GSM3462714
 
-//var soft = fileformat.ReadSoftFile("B:\\Major_project\\dataFolder\\GSE129046_family\\GSE129046_family.soft");
+// affyFrame.DuplicatesIndx(newl);
+// affyFrame.SaveFrameAsCSV("A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\expr.csv");
+// BioSySNet.DataFrame dataFrame = new();
+// Console.WriteLine(dataFrame.Data);
+
+// affyFrame.SortFrame(1);
+// object[ , ] arr = affyFrame.ListToArray();
+// csvArr.visualizeCSV(arr);
+// foreach (var row in affyFrame.SortFrame(1))
+// {
+//      foreach (object item in row)
+//      {
+//             Console.Write(item + "\t");
+//      } Console.WriteLine();
+// }
+// affyFrame.Info();
+// var soft = fileformat.ReadMetaDataBySOFT("B:\\Major_project\\dataFolder\\GSE129046_family\\GSE129046_family.soft");
 //Console.WriteLine(soft.SeriesTitle);
 //Console.WriteLine(soft.SeriesSampleID);
 //Console.WriteLine(soft.PlatformOrganism);
@@ -28,7 +72,7 @@
 //                                {3,4,6},
 //                                {4,2,8}};
 
-//string InputFile = "B:\\Major_project\\dataFolder\\GSE154844_family\\GSE154844_Raw_counts.csv";
+// string InputFile = "B:\\Major_project\\dataFolder\\GSE154844_family\\GSE154844_Raw_counts.csv";
 // string OutputLoc = "B:\\Major_project\\dataFolder\\GSE154844_family\\Analysis";
 // BioSyS_Tool.ExpressionNormalization expression = new();
 // double[,] trns = expression.FPKMNormalization(ct, new double[] {20, 10, 10, 30}, 10);
@@ -42,14 +86,7 @@
 // foreach(double val in table.GeneLength) { Console.WriteLine(val); }
 // foreach (string col in ctt.Accession) { Console.Write(col + "\t"); }
 //Console.WriteLine("\n\n");
-//for (int row = 0; row < corr.GetLength(0); row++)
-//{
-//    for (int col = 0; col < corr.GetLength(1); col++)
-//    {
-//        Console.Write(corr[row, col] + "\t");
-//    }
-//    Console.WriteLine();
-//}
+
 //Console.WriteLine('\n');
 //for (int row = 0; row < sample.Sample2.GetLength(0); row++)
 //{

@@ -14,6 +14,7 @@ using System.Diagnostics;
 using IronPython.Compiler.Ast;
 using IronPython.Runtime.Operations;
 using HtmlAgilityPack;
+using System.Reflection.Metadata;
 
 
 namespace BioSySNet
@@ -22,7 +23,7 @@ namespace BioSySNet
 
     public class BioFormats
     {
-        static string AutoFormatSelector(string path) {
+        public string AutoFormatSelector(string path) {
             string[] form = path.Split('.');
             return form.Last();
         }
@@ -263,7 +264,7 @@ namespace BioSySNet
             }
             string remoteSoftFileLoc = outputLoc + '\\' + gseAccession + "_family.soft";
             Ungzip(gunZipFile, remoteSoftFileLoc);
-            var softReader = ReadSoftFile(remoteSoftFileLoc);
+            var softReader = ReadMetaDataBySOFT(remoteSoftFileLoc);
             string[] filename = softReader.SeriesSupplementaryFile.Split('|');
 
             foreach (string file in filename)
@@ -276,6 +277,70 @@ namespace BioSySNet
             }
         }
 
+        public List<List<object>> IGetExpression(string GSMID)
+        {
+            var doc = new HtmlWeb();
+            var con = doc.Load($"https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?view=data&acc={GSMID}");
+            var node = con.DocumentNode.SelectNodes("/html/body/font/pre/text()[2]");
+
+            List<List<object>> resultExpression = new();
+            List<object> head = new(){"ID", GSMID};
+            resultExpression.Add(head);
+
+            List<string> affyValues = node[0].InnerText.Replace("\n", "\t").Split('\t').ToList();
+
+            List<object> affyDoubleValues = new();
+            foreach (string v in affyValues) {
+                if (double.TryParse(v, out _)) {
+                    affyDoubleValues.Add(v); // double.Parse(v)
+                } else { affyDoubleValues.Add(v); }
+            }
+
+            for (int s = 1; s < affyDoubleValues.Count-1; s+=2) 
+            {
+                var affyEmpty = new List<object>()
+                { affyDoubleValues[s], affyDoubleValues[s + 1] }; 
+                resultExpression.Add(affyEmpty);
+            }
+            return resultExpression;
+        }
+
+        public void ArrayExpressions(string SoftFilePath, string outputPath)
+        {
+            // object[ , ] ExpressionValue = new object[ , ];
+            Console.WriteLine("1. Work loaded under process..");
+
+            var METADATA = ReadMetaDataBySOFT(SoftFilePath);
+            string[] GSMs = METADATA.SeriesSampleID.Split(',').SkipLast(1).ToArray();
+            Console.WriteLine($"2. GSM Readed For {METADATA.SeriesTitle.Trim()}..");
+
+            BioSySNet.DataFrame expr = new(IGetExpression(GSMs[0]));
+            Console.WriteLine("3. Expression Extracting..");
+
+            Console.Write(GSMs[0]+" => ");
+            for (int i = 1; i < GSMs.Length; i++)
+            {
+                List<List<object>> Iexpr = IGetExpression(GSMs[i]);
+                expr.Merge(Iexpr, ByColName: "ID");
+                Console.Write(GSMs[i]+" => ");
+            }
+
+            Console.WriteLine($"\n4. Created: {outputPath+METADATA.SeriesAccession.Trim()}_Expr.csv");
+            using(var csv = File.CreateText(outputPath+METADATA.SeriesAccession.Trim()+"_Expr.csv"))
+            {
+                foreach (object head in expr.HEADER) { csv.Write(head+","); }
+                csv.WriteLine();
+                Console.WriteLine("Shape: "+expr.Data.Count+" x "+expr.Data[1].Count);
+                for (int i = 0; i < expr.Data.Count; i++)
+                {
+                    for (int j = 0; j < expr.Data[i].Count; j++){ csv.Write(expr.Data[i][j]+","); }
+                    csv.WriteLine();
+                }
+                csv.Close();
+            }
+            Console.WriteLine("-- Finished --");
+        }
+
         public struct SoftFileData
         {
             public string? SeriesTitle, SeriesAccession, SeriesSummary;
@@ -286,31 +351,34 @@ namespace BioSySNet
             public Dictionary<string, string> SAMPLES;
         }
 
-        public SoftFileData ReadSoftFile(string filename)
+        public SoftFileData ReadMetaDataBySOFT(string filename)
         {
             string[] lines = File.ReadAllLines(filename);
             SoftFileData softFileData = new SoftFileData();
             for (int i = 0; i < lines.Length; i++)
             {
-                string ValueLine = lines[i].Split('=')[1].Replace('\n', ' ');
-                if (lines[i].Contains("!Series_title")) {
-                    softFileData.SeriesTitle = ValueLine; }
-                else if (lines[i].Contains("!Series_geo_accession")) {
-                    softFileData.SeriesAccession = ValueLine; }
-                else if (lines[i].Contains("!Series_summary")) {
-                    softFileData.SeriesSummary = ValueLine; }
-                else if (lines[i].Contains("!Series_sample_id")) {
-                    softFileData.SeriesSampleID += ValueLine + ' '; }
-                else if (lines[i].Contains("!Series_supplementary_file")) {
-                    softFileData.SeriesSupplementaryFile += ValueLine + '|'; }
-                else if (lines[i].Contains("!Platform_geo_accession")) {
-                    softFileData.PlatformID = ValueLine; }
-                else if (lines[i].Contains("!Platform_title")) {
-                    softFileData.PlatformTitle = ValueLine; }
-                else if (lines[i].Contains("!Platform_technology")) {
-                    softFileData.PlatformTechnology = ValueLine; }
-                else if (lines[i].Contains("!Platform_organism")) {
-                    softFileData.PlatformOrganism = ValueLine; }
+                if (lines[i].Contains("=")) { 
+                    string ValueLine = lines[i].Split('=')[1].Replace('\n', ' ');
+                    if (lines[i].Contains("!Series_title")) {
+                        softFileData.SeriesTitle = ValueLine; }
+                    else if (lines[i].Contains("!Series_geo_accession")) {
+                        softFileData.SeriesAccession = ValueLine; }
+                    else if (lines[i].Contains("!Series_summary")) {
+                        softFileData.SeriesSummary = ValueLine; }
+                    else if (lines[i].Contains("!Series_sample_id")) {
+                        softFileData.SeriesSampleID += ValueLine.Trim()+','; }
+                    else if (lines[i].Contains("!Series_supplementary_file")) {
+                        softFileData.SeriesSupplementaryFile += ValueLine + '|'; }
+                    else if (lines[i].Contains("!Platform_geo_accession")) {
+                        softFileData.PlatformID = ValueLine; }
+                    else if (lines[i].Contains("!Platform_title")) {
+                        softFileData.PlatformTitle = ValueLine; }
+                    else if (lines[i].Contains("!Platform_technology")) {
+                        softFileData.PlatformTechnology = ValueLine; }
+                    else if (lines[i].Contains("!Platform_organism")) {
+                        softFileData.PlatformOrganism = ValueLine; }
+                }
+                else { continue; }
             }
             return softFileData;
         }

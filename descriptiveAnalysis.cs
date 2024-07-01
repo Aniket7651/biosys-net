@@ -209,7 +209,7 @@ namespace BioSySNet
             return z;
         }
 
-        private double Quartile(double[] x, int quartile)
+        public double Quartile(double[] x, int quartile)
         {
             Array.Sort(x);
             int n = x.Length;
@@ -270,7 +270,7 @@ namespace BioSySNet
 
         public double[,] CorrelationMatrix(double[,] data, string? WriteCSV=null, string[]? Annotation=null, double threshold=0.0)
         {                                                 // WriteCSV is the path of the output we want to save
-            descriptiveAnalysis arrays = new(); csvReader csvArr = new();
+            descriptiveAnalysis arrays = new(); CSVArray csvArr = new();
             double[,] corr = arrays.Matrix(data.GetLength(1), data.GetLength(1));
             for (int i = 0; i < data.GetLength(1); i++)
             {

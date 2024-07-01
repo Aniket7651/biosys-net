@@ -1,6 +1,5 @@
 # `C# For Bioinformatics and Biological Data Processing: BioSyS.Net`
 
-
 [![BioSyS_logo](https://raw.githubusercontent.com/Aniket7651/biosys-net/master/removebg-logo.ico)](https://www.nuget.org/packages/BioSySNet)
 
 ![net](https://img.shields.io/badge/.NET-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
@@ -8,7 +7,7 @@
 ![cs](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
 ![python](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
 
-`Bioinformatics` is an interdisciplinary field that analyzes biological data using computer science. I have created a new package for bioinformatics and computational analysis built in C#. This package can analyze biological data such as DNA, RNA, and protein sequences, as well as perform tasks such as Biological Database Scraping. Additionally, `'GEO Analysis'` offers a variety of analyses for RNA-seq preprocessing, parsing various biological file formats (FASTA, PDB, SOFT, FASTQ, etc.). [BioSySNet](https://www.nuget.org/packages/BioSySNet) also utilizes the Python interpreter to run certain plotting functions (i.e., it uses IronPython to execute Python functions, "so first, you need to make sure that Python is installed on your machine").
+**Bioinformatics** is an interdisciplinary field that analyzes biological data using computer science. I have created a new package for bioinformatics and computational analysis built in C#. This package can analyze biological data such as DNA, RNA, and protein sequences, as well as perform tasks such as Biological Database Scraping. Additionally, **'GEO Analysis'** offers a variety of analyses for RNA-seq preprocessing, parsing various biological file formats (FASTA, PDB, SOFT, FASTQ, etc.). [BioSySNet](https://www.nuget.org/packages/BioSySNet) also utilizes the Python interpreter to run certain plotting functions (i.e., it uses IronPython to execute Python functions, "so first, you need to make sure that Python is installed on your machine").
 
 ## `Features`
 - Scrape useful information from various databases like, DrugBank, UnipProt, PDB etcand PDB.
@@ -36,19 +35,28 @@ BioSyS requires Python on your machine for plotting and for providing some funct
 ## `Download`
 You can easly download the package with nuget package manager:
 ```
-PM> NuGet\Install-Package BioSySNet -Version 0.0.2
+PM> NuGet\Install-Package BioSySNet -Version x.y.z
 ```
-OR
+**OR,**  Can also be installed by CLI using dotnet:
+```
+> dotnet add package BioSySNet --version x.y.z
+```
+Where, **x.y.z** will be desired version i.e. `-version 0.0.3` OR `--version 0.0.3` (LATEST)
 
-Can also be installed by CLI using dotnet:
-```
-> dotnet add package BioSySNet --version 0.0.2
-```
+## `Releases`
+
+### `v0.0.3 [3n2h3i28]` (Latest Release)
+- Class `csvReader` has been changed to new name `CSVArray`.
+- The `readCSV` function of the `CSVArray` class (formerly known as `csvReader`) has been renamed to `readNumericCSV` in this version. This change allows the CSV file to be read as numeric points only.
+- A new class feature called `ImportData` has been added, which allows for importing or reading datasets from CSV, tab, or other delimiter symbols. Additionally, a class called `DataFrame` has been introduced for dataset handling and manipulations.
+- `TrainTest_Split` function now takes an array of double type as arguments and returns a floating point value.
+- `ReadSoftFile` has been changed to `ReadMetaDataBySOFT` in the `BioFormats` class, which is responsible for reading metadata in the SOFT file format.
+- Lastly, the `ArrayExpression` function in the `BioFormats` class enables access to microarray data from the Gene Expression Omnibus database.
 
 ## `Uses`
 
 Go through the Medium Link:
-- [Part 1 (Configure Python, Class BioTools and BioFormats)](https://medium.com/@aniketyadav8687/biosys-net-c-for-bioinformatics-and-computational-analysis-part-1-c8d8310e7005)
+- [Chapter 1 (Configure Python, Class BioTools and BioFormats)](https://medium.com/@aniketyadav8687/biosys-net-c-for-bioinformatics-and-computational-analysis-part-1-c8d8310e7005)
 
 `In the next Part, we will discuss about classes for statistical analysis on biological data (GEOAnalysis, GEOCSVTable, Statistics and descriptiveAnalysis classes of BioSySNet) and scraping information from Drug Bank (drugScraping class of BioSySNet).`
 
