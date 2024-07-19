@@ -5,14 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\bioformats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:bioformats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|a:\\projects\\c#_programs\\biosysnet\\biosysnet\\biosysnet.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
-      "RelativeMoniker": "D:0:0:{67343EAC-37F4-4777-A411-31DA7EAAACAE}|BioSySNet.csproj|solutionrelative:biosysnet.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,20 +14,8 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -44,34 +24,9 @@
               "RelativeDocumentMoniker": "BioFormats.cs",
               "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioFormats.cs",
               "RelativeToolTip": "BioFormats.cs",
-              "ViewState": "AQIAADABAAAAAAAAAAAuwDwBAAAnAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T10:01:18.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BioSySNet",
-              "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj",
-              "RelativeDocumentMoniker": "BioSySNet.csproj",
-              "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\BioSySNet.csproj",
-              "RelativeToolTip": "BioSySNet.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-13T14:58:27.181Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAMAAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T12:42:49.736Z",
+              "WhenOpened": "2024-07-18T18:22:05.931Z",
               "EditorCaption": ""
             }
           ]

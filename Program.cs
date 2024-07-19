@@ -2,6 +2,7 @@
 //////////// ////// //////// STATEMENTS UNDER TESTING BY CONSOLE APPLICATION //////// ////// ///////////////
 //////////// ////// ////////        PAKAGING PERFORM BY CLASS LIBRARY        //////// ////// ///////////////
 
+string GlobalOutPut = "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\bin\\OutPut\\";
 
 //BioSySNet.drugScraping scrap = new BioSySNet.drugScraping();
 BioSySNet.BioFormats fileformat = new BioSySNet.BioFormats();
@@ -14,13 +15,12 @@ BioSySNet.CSVArray csvArr = new();
 
 BioSySNet.ImportData import = new();
 // List<object> newl = new List<object>(){2,6,8,3,2};
-fileformat.ArrayExpressions("C:\\Users\\lenovo\\Downloads\\GSE17193_family.soft", 
-     "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\");
+// fileformat.ArrayExpressions("C:\\Users\\lenovo\\Downloads\\GSE17193_family.soft", GlobalOutPut);
 // var data = import.FromCommaDelim("A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\sample.csv");
 // var data2 = import.FromCommaDelim("A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\s2.csv");
 // BioSySNet.DataFrame affyFrame = new(data, defaultTypes: true);
 // Console.WriteLine(data[1][1].GetType());
-// BioSySNet.DataFrame dataFrame = new(data, defaultTypes: true);
+// BioSySNet.DataFrame dataFrame = new();
 // dataFrame.Merge(data2, "h1");
 // // dataFrame.Stats(saveLogs: "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\");
 // foreach (var row in dataFrame.Stats())

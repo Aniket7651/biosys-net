@@ -18,9 +18,16 @@ namespace BioSySNet
         public double[] Y_Test;
     } 
 
-
+    /// <summary>
+    /// Load delimited files as dataframe of List Of List (LoL)
+    /// </summary>
     public class ImportData
     {
+        /// <summary>
+        /// Read comma seperated files (CSVs)
+        /// </summary>
+        /// <param name="filePath">Full path of the CSV file</param>
+        /// <returns>List Of List as dataframe</returns>
         public List<List<object>> FromCommaDelim(string filePath)
         {
             List<List<object>> data = new();
@@ -40,6 +47,11 @@ namespace BioSySNet
             return data;
         }
 
+        /// <summary>
+        /// Read Tab seperated Files (TSVs)
+        /// </summary>
+        /// <param name="filePath">Full path of the TSV or text file</param>
+        /// <returns>List Of List as dataframe</returns>
         public List<List<object>> FromTabDelim(string filePath)
         {
             List<List<object>> data = new();
@@ -59,6 +71,12 @@ namespace BioSySNet
             return data;
         }
 
+        /// <summary>
+        /// Read files, seperated with any symbol as delimition
+        /// </summary>
+        /// <param name="filePath">Full path of the CSV file</param>
+        /// <param name="sep">Symbol seperated with</param>
+        /// <returns>List Of List as dataframe</returns>
         public List<List<object>> FromOtherDelim(string filePath, string sep)
         {
             List<List<object>> data = new();
@@ -79,13 +97,24 @@ namespace BioSySNet
         }
     }
 
+    /// <summary>
+    /// DataFrame class provides for manipulating dataset and their operation.
+    /// In the form of <b>List Of List (LoL)</b> and data type as <b>object</b>
+    /// </summary>
     public class DataFrame
     {
+        /// <summary>Load data as List Of List</summary>
         public List<List<object>> Data;
-        public int[] Shape;  // ROWS and COLUMNS are not updated by changes applied in dataset shape
+        public int[] Shape;  // ROWS and COLUMNS are not updated by every changes applied in dataset shape
+        /// <summary>Load row and column length as integer type</summary>
         public int Rows, Columns;
+        /// <summary>Load Header of the dataframe</summary>
         public List<object>? HEADER;
-    
+
+        /// <param name="ListData">Data frame in the form of List of List, where dType would be object</param>
+        /// <param name="header">A bool type parameter for confirming if header exist on first row of dataset</param>
+        /// <param name="displayData">Bool typed parameter, display data after it was loaded</param>
+        /// <param name="defaultTypes">Bool type parameter for leave parameter as default, likly no need to convert types.</param>
         public DataFrame(List<List<object>> ListData, bool header = true, 
             bool displayData = false, bool defaultTypes = false)
         {
@@ -115,7 +144,6 @@ namespace BioSySNet
             HEADER = header? ListData[0]: Data[0];
             if (displayData == true)
             {
-
                 for(int d = 0; d <= Math.Abs(Data.Count/4); d++)
                 {
                     foreach (object value in Data[d])
@@ -127,6 +155,10 @@ namespace BioSySNet
             } 
         }
 
+        /// <summary>
+        /// Representative, Head of the Dataset upto desired rows which returns void
+        /// </summary>
+        /// <param name="upto">Top Number of rows, where default value will 5</param>
         public void Head(int upto = 5)
         {
             if (upto > Rows)
@@ -153,8 +185,13 @@ namespace BioSySNet
             }
         }    // NOT TESTED
 
+        /// <summary>
+        /// Transpose the dataframe which makes row to column and column to row
+        /// </summary>
+        /// <returns>List Of List (LoL) type can store as a variable</returns>
         public List<List<object>> TransposeFrame(){
         // reference:- https://stackoverflow.com/questions/39484996/rotate-transposing-a-listliststring-using-linq-c-sharp
+            // as `LINQ method`
             List<List<object>> res = Data
                 .SelectMany(inner => inner.Select((item, index) => new { item, index }))
                 .GroupBy(i => i.index, i => i.item)
@@ -164,6 +201,11 @@ namespace BioSySNet
             return res;
         }
 
+        /// <summary>
+        /// Create a new dataframe from existing dataframe with <b>columns name</b>
+        /// </summary>
+        /// <param name="colName">parameter as name of the multiple columns </param>
+        /// <returns>List Of List as dataframe</returns>
         public List<List<object>> SubSet(params string[] colName)
         {
             int[] listIndex = new int[colName.Length];
@@ -175,6 +217,11 @@ namespace BioSySNet
             return frame.ISubSet(listIndex);
         }
 
+        /// <summary>
+        /// Create a new dataframe from existing dataframe with <b>columns Index</b>
+        /// </summary>
+        /// <param name="colIndex">Index of the multiple columns</param>
+        /// <returns>List Of List as dataframe</returns>
         public List<List<object>> ISubSet(params int[] colIndex)
         {
             List<List<object>> Out_temp = new List<List<object>>();
@@ -190,6 +237,11 @@ namespace BioSySNet
             return tempTranspose.TransposeFrame();
         }
 
+        /// <summary>
+        /// Convert form of <c>object[ , ]</c> type dataframe to List Of List dataframe
+        /// </summary>
+        /// <param name="DataFrameInObj"><c>object[ , ]</c> type dataframe</param>
+        /// <returns>List Of List as dataframe</returns>
         public List<List<object>> ArrayToList(object[ , ] DataFrameInObj)
         {
             List<List<object>> list = new List<List<object>>();
@@ -205,21 +257,37 @@ namespace BioSySNet
             return list;
         }
 
+        /// <summary>
+        /// Rename a column header By <b>Index</b>
+        /// </summary>
+        /// <param name="colIndex">Index of the column</param>
+        /// <param name="newName">New name of the column to be replaced by existing one</param>
         public void RenameIColumn(int colIndex, string newName)
         {
             HEADER[colIndex] = newName;
         }
 
+        /// <summary>
+        /// Rename a column header By <b>Name of the column</b>
+        /// </summary>
+        /// <param name="colIndex">name of the column</param>
+        /// <param name="newName">New name of the column to be replaced by existing one</param>
         public void RenameColumn(string colName, string newName)
         {
             int Ind = HEADER.IndexOf(colName);
             HEADER[Ind] = newName;
         }
 
+        /// <summary>
+        /// Add a column at the specific index in the dataframe
+        /// </summary>
+        /// <param name="colValues">List of object type is use as the values of that column</param>
+        /// <param name="colName">Name of the new column</param>
+        /// <param name="IndexAt">Index number where you want to add this new column</param>
         public void AddColumn(List<object> colValues, string colName, int IndexAt)
         {
             if (Columns >= IndexAt)
-            {
+            { // if Index is lower OR equal to length of total column
                 HEADER.Insert(IndexAt, colName);
                 for (int i = 0; i < Rows; i++)
                 {
@@ -228,10 +296,16 @@ namespace BioSySNet
             }
             else
             {
+                // By default add column at the last
                 AddColumnToLast(colValues, colName);
             }
         }
 
+        /// <summary>
+        /// Add new column at the last of the dataframe
+        /// </summary>
+        /// <param name="colValues">List of object type is use as the values of that column</param>
+        /// <param name="colName">Name of the new column</param>
         public void AddColumnToLast(List<object> colValues, string colName)
         {
             HEADER.Insert(Columns, colName);
@@ -241,6 +315,28 @@ namespace BioSySNet
             }
         }
 
+        /// <summary>
+        /// Sum of single numeric row (axis = 1)
+        /// </summary>
+        /// <param name="row"></param>
+        /// <returns>Sum of the row as double</returns>
+        public double SumOfRow(List<object> row)
+        {
+            double Sumation = 0;
+            foreach (object v in row)
+            {
+                Sumation += (double)v;
+            }
+            return Sumation;
+        }
+        
+        /// <summary>
+        /// Statistical Information of the numeric dataframe i.e. <i>Mean</i>, <i>Median</i>, <i>Maximum</i>
+        /// <i>Minimum</i>, <i>Sum</i>, <i>Q1 quartile</i>, <i>Q3 quartile</i>, <i>standared deviation</i> like information.
+        /// </summary>
+        /// <param name="display">Display information frame by display=true</param>
+        /// <param name="saveLogs">Path of the folder, where you want to save this information as CSV</param>
+        /// <returns>List Of List as dataframe</returns>
         public List<List<object>> Stats(bool display = false, string? saveLogs = null)
         {
             Statistics measures = new Statistics();
@@ -318,6 +414,10 @@ namespace BioSySNet
             return Lis;
         }
 
+        /// <summary>
+        /// Convert form of List Of List dataframe to <c>object[ , ]</c> type dataframe
+        /// </summary>
+        /// <returns>List Of List as dataframe</returns>
         public object[ , ] ListToArray() 
         {
             object [ , ] Arrays = new object[Rows, Columns];
@@ -331,6 +431,7 @@ namespace BioSySNet
             return Arrays;
         }
 
+        /// <summary>Status: CHECKED</summary>
         private int[] SortedIndxInCol(List<object> Col) {
             descriptiveAnalysis dupl = new();
             
@@ -347,9 +448,13 @@ namespace BioSySNet
                 else { SortIndx.Add(Ind); }
             }
             return SortIndx.ToArray();
-            
-        } // CHECKED 
+        }
 
+        /// <summary>
+        /// Sort dataframe through a specific column index
+        /// </summary>
+        /// <param name="ByColIndx">Index of the column</param>
+        /// <returns>Sorted dataframe of List Of List form</returns>
         public List<List<object>> SortFrame(int ByColIndx)
         {
             object [ , ] result = new object[Rows, Columns];
@@ -366,6 +471,9 @@ namespace BioSySNet
             return ArrayToList(result);
         }
         
+        /// <summary>
+        /// Data type related Information of the dataframe, print on console
+        /// </summary>
         public void Info()
         {
             for (int j = 0; j < Columns; j++)
@@ -374,6 +482,13 @@ namespace BioSySNet
             }
         }
 
+        
+
+        /// <summary>
+        /// Merge OR Map two dataframe into a single dataframe
+        /// </summary>
+        /// <param name="AnotherFrame">Another dataframe to be merge from existing dataframe</param>
+        /// <param name="ByColName">Merge dataframe by a specific column</param>
         public void Merge(List<List<object>> AnotherFrame, string ByColName)
         {
             DataFrame f1 = new(AnotherFrame, defaultTypes: true);
@@ -389,6 +504,11 @@ namespace BioSySNet
             HEADER.AddRange(f1.HEADER);
         }
 
+        /// <summary>
+        /// Export dataframe as file
+        /// </summary>
+        /// <param name="fileLoc">Full path of that file OR name of the file where you want to save dataframe</param>
+        /// <param name="sep">seperation of data values to each other, by default it's " , " (Comma seperated)</param>
         public void SaveAsCSV(string fileLoc, string sep = ",")
         {
             using(var csv = File.CreateText(fileLoc))
@@ -405,6 +525,10 @@ namespace BioSySNet
         }
     }
 
+    /// <summary>
+    /// Something also same as <c>ImportData</c> class, But <c>CSVArray</c> Reads only numeric CSV file with
+    /// numeric return type also in 1D OR 2D (Classical functionality of <c>DataFrame</c> and <c>ImportData</c> classes)
+    /// </summary>
     public class CSVArray
     {
         public int[] CSVshape(string location){
@@ -539,7 +663,9 @@ namespace BioSySNet
         }
     }
 
-
+    /// <summary>
+    /// A class for loading and handling RNA Sequencing Counts dataset, which is inherit from <c>CSVArray</c>
+    /// </summary>
     public class GEOCSVTable: CSVArray
     {
         public struct GEOData
@@ -551,6 +677,13 @@ namespace BioSySNet
 
         public struct Samples { public double[,] Sample1; public double[,] Sample2; }
 
+        /// <summary>
+        /// A method to seperate counts, accession IDs and other information from RNA Counts file
+        /// </summary>
+        /// <param name="csvLocation">path of the RNA sequence count file</param>
+        /// <param name="SampleCountsIndex">Array of that all Indexes</param>
+        /// <param name="geneAccessionIndex">Index of the Accession Id where exist in the count dataset, default as 0</param>
+        /// <returns>Multiple return type values as, <c>Accession</c>, <c>SampleID</c> and <c>NumberOfReads</c></returns>
         public GEOData IndexSeparatedCounts(string csvLocation, int[] SampleCountsIndex, int geneAccessionIndex = 0) 
         {
             string[] reads = File.ReadAllLines(csvLocation);

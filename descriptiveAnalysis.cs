@@ -223,7 +223,7 @@ namespace BioSySNet
         /// </summary>
         /// <param name="data">data column can be double only</param>
         /// <param name="threshold"> set threshold; can be critical or range between value (<i>default will be 1.5</i>)</param>
-        /// <returns>Return <b>index</b> and <b>values</b> which are considered as outliers in data array</returns>
+        /// <returns>Return <b>index</b> and <b>values</b> which are considered as outliers in data array in form, Tuple of int[], double[].</returns>
         public Tuple<int[], double[]> PotentialOutliersIQR(double[] data, double threshold=1.5)
         {
             double Q1 = Quartile(data, 1);
@@ -242,7 +242,7 @@ namespace BioSySNet
         /// </summary>
         /// <param name="data"></param>
         /// <param name="threshold"></param>
-        /// <returns>Return <b>index</b> and <b>values</b> which are considered as outliers in data array</returns>
+        /// <returns>Return <b>index</b> and <b>values</b> which are considered as outliers in data array in form, Tuple of int[], double[].</returns>
         public Tuple<int[], double[]> PotentialOutliersZscore(double[] data, double threshold=3)
         {
             List<int> indxPO = new(); List<double> valPO = new();
