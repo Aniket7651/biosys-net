@@ -7,20 +7,15 @@ on:
         tags: 
             - 'v[0-9]+.[0-9]+.[0-9]+'
 
-env:
-    PROJECT_PATH: "BioSySNet.csproj"
-    PACKAGE_OUT_DIR: ${{ github.workspace }}\output
-    NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
-
 jobs:
     deploy:
-        name: "Deploy v[0-9]+.[0-9]+.[0-9]+"
+        name: "Deploy"
         runs-on: 'ubuntu-latest'
         steps:
-        - name: 'checkouts'
+        - name: checkouts
           uses: actions/checkout@v2
         
-        - name: 'Verify commit exists in origin/master'
+        - name: Verify commit exists in origin/master
           run: |
             git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
             git branch --remote --contains | grep origin/master
@@ -28,7 +23,7 @@ jobs:
         - name: Set VERSION variable from tag
           run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
 
-        - name: 'Build'
+        - name: Build
           run: dotnet build --configuration Release /p:Version=${VERSION}
 
         - name: Test
