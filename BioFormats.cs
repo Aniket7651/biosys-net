@@ -19,21 +19,39 @@ using System.Reflection.Metadata;
 
 namespace BioSySNet
 {
-#pragma warning disable
+    #pragma warning disable
 
+    /// <summary>
+    /// class <c>BioFormat</c> contain programs related to organization and manipulation of biological
+    /// file formats, ie. <i>PDB</i>, <i>FASTA</i>, <i>FASTQ</i>, etc..
+    /// </summary>
     public class BioFormats
     {
+        /// <summary>
+        /// Function for automatic selection of format
+        /// </summary>
+        /// <param name="path">Full path of any file</param>
+        /// <returns>Name of the .format as string</returns>
         public string AutoFormatSelector(string path) {
             string[] form = path.Split('.');
             return form.Last();
         }
 
+        /// <summary> structure for multiple value return type from PDB format</summary>
         public struct PDBvars
         {
             public string? title, header;
             public List<List<string>>? atoms;
         }
 
+        /// <summary>
+        /// Function can read PDB (Protein Data Bank) file format
+        /// </summary>
+        /// <param name="path_pdbFile">Full path of the <b>PDB</b> file</param>
+        /// <returns>
+        /// Mutiple values like; <c>.title</c> of the PDB, <c>.atoms</c> of the Amino acid as List Of List datafram,
+        /// <c>.header</c> of the file
+        /// </returns>
         public PDBvars PDBReader(string path_pdbFile)
         {
             List<List<string>> atom = new();
@@ -75,13 +93,18 @@ namespace BioSySNet
             return pdbvars;
         }
 
-
+        /// <summary> structure store multiple return type value </summary>
         public class FASTA {
             public string? Header, Seq;
             public string[]? MultiHeader, MultiSeq;
             public int Len, readLen;
         }
 
+        /// <summary>
+        /// A Temporary FASTA format reader for <b>only single sequence in a file</b>
+        /// </summary>
+        /// <param name="path">full path of the <b>FASTA/TXT</b> file</param>
+        /// <returns>multi variable return like; <c>.Header</c>, <c>.Seq</c> and <c>.Len</c></returns>
         public FASTA Readfasta(string path) {
             string[] reads = File.ReadAllLines(path);
             string seq = "";
@@ -96,6 +119,13 @@ namespace BioSySNet
             return fastaInfo;
         }
 
+        /// <summary>
+        /// Read FASTA file, which will contain Multiple FASTA sequence
+        /// </summary>
+        /// <param name="path">full path of the <b>FASTA/TXT</b> file</param>
+        /// <returns>
+        /// multi variable return like; <c>.MultiHeader</c>, <c>.MultiSeq</c> and <c>.readLen</c> No. of seq in file
+        /// </returns>
         public FASTA multiFASTAread(string path) {
             List<string> header = new List<string>();
             string seqs = "";
@@ -115,6 +145,11 @@ namespace BioSySNet
             return fastainfo;
         }
 
+        /// <summary>
+        /// Download PDB or CIF file format from RCSB.org (make sure, internet should be connected)
+        /// </summary>
+        /// <param name="pdbId">Alphanumeric PDB id from RCSB</param>
+        /// <param name="format">file format you want to download means, format=<b>"pdb" or "cif"</b></param>
         public void PDBFileFormat(string pdbId, string format = "pdb")
         {
             // <a href="//files.rcsb.org/download/4U5X.cif">PDBx/mmCIF Format</a> pdb file download link
@@ -131,6 +166,11 @@ namespace BioSySNet
             }
         }
 
+        /// <summary>
+        /// Read FASTQ file as sequence and ASCII of pairs
+        /// </summary>
+        /// <param name="path">full path of the <b>FASTQ</b> file</param>
+        /// <returns>Dictionary of strings where key as sequence and value as ASCII code</returns>
         public Dictionary<string, string> ReadFASTQ(string path) {
             List<string> seqs = new(); List<string> ascii = new();
             var pairsDNA_ASCII = new Dictionary<string, string>();
@@ -150,7 +190,13 @@ namespace BioSySNet
             return pairsDNA_ASCII;
         }
 
-        public void NeucleotideFastaDataset(string fastaPath, string path_csv) {
+        /// <summary>
+        /// Aplicable for Multiple FASTA sequence file to convert numeric dataset and save as CSV file.
+        /// columns of the CSV contain; id of the sequence, GC%, AT%, Lenght of the sequence number of A,T,G and C
+        /// </summary>
+        /// <param name="fastaPath"><b>FASTA/TXT</b> file path</param>
+        /// <param name="path_csv">output location where you want to save CSV</param>
+        public void FASTAToDataset(string fastaPath, string path_csv) {
             BioTools BioInstanse = new();
             var aId = new List<string>(); List<int> nT = new();
             var gcp = new List<float>(); List<int> nG = new();
@@ -177,6 +223,12 @@ namespace BioSySNet
             }
         }
 
+        /// <summary>
+        /// You can save alignment output as <i>sysali</i> or <i>ali</i> or <i>txt</i> file
+        /// </summary>
+        /// <param name="fileLoc">file name where you want to save alignment</param>
+        /// <param name="singleFASTALoc"><b>FASTA</b> file location for single target sequence</param>
+        /// <param name="multifastaRefFileLoc"><b>FASTA</b> file location for multiple template sequence</param>
         public void AlignmentFile(string fileLoc, string singleFASTALoc, string multifastaRefFileLoc) {
             BioTools tools = new();
             var target = Readfasta(singleFASTALoc); var template = multiFASTAread(multifastaRefFileLoc);
@@ -198,6 +250,12 @@ namespace BioSySNet
             }
         }
 
+        /// <summary>
+        /// To download GSE (Gene Expression Serise) file or dataset
+        /// </summary>
+        /// <param name="gseAccession">GSE id</param>
+        /// <param name="outputLoc"> location of the output will be store</param>
+        /// <param name="soft">true if SOFT format needed or otherwise false</param>
         public void GetGEO(string gseAccession, string outputLoc, bool soft = false)
         {                                               // AdditionalFiles={soft, miniml, matrix}
             string dynGSEcode = GSEXXnnn(gseAccession);
@@ -253,6 +311,11 @@ namespace BioSySNet
             return removedDuplicateFiles;
         }
 
+        /// <summary>
+        /// Download GSE (Gene Expression Series) file by reading SOFT file, it will download SOFT file by default
+        /// </summary>
+        /// <param name="gseAccession">GSE id</param>
+        /// <param name="outputLoc">output where you want to store</param>
         public void GetGEOBySOFT(string gseAccession, string outputLoc)
         {
             string dynGSEcode = GSEXXnnn(gseAccession);
@@ -277,6 +340,11 @@ namespace BioSySNet
             }
         }
 
+        /// <summary>
+        /// Get single Microarray expression
+        /// </summary>
+        /// <param name="GSMID">GEO sample id</param>
+        /// <returns>List Of List, of prob ids and expression values</returns>
         public List<List<object>> IGetExpression(string GSMID)
         {
             var doc = new HtmlWeb();
@@ -305,6 +373,11 @@ namespace BioSySNet
             return resultExpression;
         }
 
+        /// <summary>
+        /// Array
+        /// </summary>
+        /// <param name="SoftFilePath"></param>
+        /// <param name="outputPath"></param>
         public void ArrayExpressions(string SoftFilePath, string outputPath)
         {
             // object[ , ] ExpressionValue = new object[ , ];
@@ -339,6 +412,11 @@ namespace BioSySNet
                 csv.Close();
             }
             Console.WriteLine("-- Finished --");
+        }
+
+        public void GetGEOPlatform(string platformID)
+        {
+            
         }
 
         public struct SoftFileData

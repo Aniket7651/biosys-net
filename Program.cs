@@ -1,6 +1,7 @@
 ﻿
 //////////// ////// //////// STATEMENTS UNDER TESTING BY CONSOLE APPLICATION //////// ////// ///////////////
 //////////// ////// ////////        PAKAGING PERFORM BY CLASS LIBRARY        //////// ////// ///////////////
+# pragma warning disable
 
 string GlobalOutPut = "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\bin\\OutPut\\";
 
