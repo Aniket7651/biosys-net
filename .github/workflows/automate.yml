@@ -3,7 +3,7 @@ name: 'Deploy dotNet Pack'
 on: 
     push:
         tags: 
-            - 'v*'
+            - '*'
 
 env:
     PROJECT_PATH: "BioSySNet.csproj"
