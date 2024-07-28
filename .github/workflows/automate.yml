@@ -2,37 +2,37 @@ name: 'Deploy dotNet Pack'
 
 on: 
     push:
-        branches:
-          - master
         tags: 
-            - 'v[0-9]+.[0-9]+.[0-9]+'
+            - 'v*'
+
+env:
+    PROJECT_PATH: "BioSySNet.csproj"
+    PACKAGE_OUT_DIR: ${{ github.workspace }}\output
+    NUGET_SOURCE_URL: 'https://api.nuget.org/v3/index.json'
 
 jobs:
     deploy:
         name: "Deploy"
-        runs-on: 'ubuntu-latest'
+        runs-on: 'windows-latest'
         steps:
-        - name: checkouts
+        - name: 'checkouts'
           uses: actions/checkout@v2
         
-        - name: Verify commit exists in origin/master
-          run: |
-            git fetch --no-tags --prune --depth=1 origin +refs/heads/*:refs/remotes/origin/*
-            git branch --remote --contains | grep origin/master
+        - name: 'Install Dotnet'
+          uses: actions/setup-dotnet@v1
 
-        - name: Set VERSION variable from tag
-          run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
+        - name: 'Restore Packages'
+          run: dotnet restore ${{ env.PROJECT_PATH }}
 
-        - name: Build
-          run: dotnet build --configuration Release /p:Version=${VERSION}
+        - name: 'Build Project'
+          run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
 
-        - name: Test
-          run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
+        - name: 'Get Version'
+          id: version
+          uses: battila7/get-version-action@v2
 
-        - name: Pack
-          run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+        - name: 'Pack Project'
+          run: dotnet pack ${{ env.PROJECT_PATH }} -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUT_DIR }}
 
-        - name: Push
-          run: dotnet nuget push NuGet.Workflow.${VERSION}.nupkg --source https://nuget.pkg.github.com/AniYD7651/index.json --api-key ${GITHUB_TOKEN}
-          env:
-            GITHUB_TOKEN: ${{ secrets.NUGET_AUTH_KEY }}
+        - name: 'Push Package'
+          run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}\*.nupkg -s ${{ env.NUGET_SOURCE_URL }} -k ${{ secrets.NUGET_AUTH_KEY }} --skip-duplicate
