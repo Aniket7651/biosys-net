@@ -2,8 +2,10 @@ name: 'Deploy dotNet Pack'
 
 on: 
     push:
+        branches:
+          - master
         tags: 
-            - '*'
+            - 'v*'
 
 env:
     PROJECT_PATH: "BioSySNet.csproj"
@@ -12,7 +14,7 @@ env:
 
 jobs:
     deploy:
-        name: "Deploy"
+        name: "Deploy v0.0.3"
         runs-on: 'windows-latest'
         steps:
         - name: 'checkouts'
