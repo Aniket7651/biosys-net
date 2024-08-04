@@ -1,7 +1,7 @@
 /*
 ~BioFormats.cs 
 file contains programs related to the biological file formats such as,
-FASTA, FASTQ, PDB etc.. also the progams that's contains in this file can perform
+FASTA, FASTQ, PDB etc.. also the programs that's contains in this file can perform
 on creating alignment file as *.sysalign, csv file from FASTA and FASTQ file for making dataset
 
 @ Author: ANIKET YADAV (aniketyadav8687@gmail.com)
@@ -49,7 +49,7 @@ namespace BioSySNet
         /// </summary>
         /// <param name="path_pdbFile">Full path of the <b>PDB</b> file</param>
         /// <returns>
-        /// Mutiple values like; <c>.title</c> of the PDB, <c>.atoms</c> of the Amino acid as List Of List datafram,
+        /// Multiple values like; <c>.title</c> of the PDB, <c>.atoms</c> of the Amino acid as List Of List datafram,
         /// <c>.header</c> of the file
         /// </returns>
         public PDBvars PDBReader(string path_pdbFile)
@@ -185,14 +185,14 @@ namespace BioSySNet
                 } }
             for (int i = 0; i < seqs.Count; i++) {
                 try { pairsDNA_ASCII.Add(seqs[i], ascii[i]); }
-                catch (System.ArgumentException) { continue; }   // Argument exception occure's in the case of duplicate key found
+                catch (System.ArgumentException) { continue; }   // Argument exception occurs in the case of duplicate key found
             }
             return pairsDNA_ASCII;
         }
 
         /// <summary>
-        /// Aplicable for Multiple FASTA sequence file to convert numeric dataset and save as CSV file.
-        /// columns of the CSV contain; id of the sequence, GC%, AT%, Lenght of the sequence number of A,T,G and C
+        /// Applicable for Multiple FASTA sequence file to convert numeric dataset and save as CSV file.
+        /// columns of the CSV contain; id of the sequence, GC%, AT%, Length of the sequence number of A,T,G and C
         /// </summary>
         /// <param name="fastaPath"><b>FASTA/TXT</b> file path</param>
         /// <param name="path_csv">output location where you want to save CSV</param>
@@ -251,7 +251,7 @@ namespace BioSySNet
         }
 
         /// <summary>
-        /// To download GSE (Gene Expression Serise) file or dataset
+        /// To download GSE (Gene Expression Series) file or dataset
         /// </summary>
         /// <param name="gseAccession">GSE id</param>
         /// <param name="outputLoc"> location of the output will be store</param>

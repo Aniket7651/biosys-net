@@ -33,7 +33,7 @@ BioSyS requires Python on your machine for plotting and for providing some funct
 - [seaborn](https://pypi.org/project/seaborn/) >= 0.12.1
 
 ## `Download`
-You can easly download the package with nuget package manager:
+You can easily download the package with nuget package manager:
 ```
 PM> NuGet\Install-Package BioSySNet -Version x.y.z
 ```
@@ -41,7 +41,7 @@ PM> NuGet\Install-Package BioSySNet -Version x.y.z
 ```
 > dotnet add package BioSySNet --version x.y.z
 ```
-Where, **x.y.z** will be desired version i.e. `-version 0.0.3` OR `--version 0.0.3` (LATEST)
+Where, **x.y.z** will be desired version i.e. `-version 0.0.4` OR `--version 0.0.4` (LATEST)
 
 ## `Releases`
 

@@ -1,20 +1,20 @@
 ﻿
 //////////// ////// //////// STATEMENTS UNDER TESTING BY CONSOLE APPLICATION //////// ////// ///////////////
 //////////// ////// ////////        PAKAGING PERFORM BY CLASS LIBRARY        //////// ////// ///////////////
-# pragma warning disable
+//# pragma warning disable
 
-string GlobalOutPut = "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\bin\\OutPut\\";
+//string GlobalOutPut = "A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\bin\\OutPut\\";
 
 //BioSySNet.drugScraping scrap = new BioSySNet.drugScraping();
-BioSySNet.BioFormats fileformat = new BioSySNet.BioFormats();
+//BioSySNet.BioFormats fileformat = new BioSySNet.BioFormats();
 //BioSySNet.BioTools seqtools = new BioSySNet.BioTools();
 // PyConfiguration.Config config = new PyConfiguration.Config();
-BioSySNet.CSVArray csvArr = new();
+//BioSySNet.CSVArray csvArr = new();
 // BioSySNet.BioFormats formats = new();
 // var soft = formats.ReadSoftMetaData("C:\\Users\\lenovo\\Downloads\\GSE17193_family.soft");
 // foreach (string v in soft.SeriesSampleID.Split(',').SkipLast(1)){ Console.WriteLine(v); }
 
-BioSySNet.ImportData import = new();
+//BioSySNet.ImportData import = new();
 // List<object> newl = new List<object>(){2,6,8,3,2};
 // fileformat.ArrayExpressions("C:\\Users\\lenovo\\Downloads\\GSE17193_family.soft", GlobalOutPut);
 // var data = import.FromCommaDelim("A:\\PROJECTS\\C#_Programs\\BioSySNet\\BioSySNet\\sample.csv");

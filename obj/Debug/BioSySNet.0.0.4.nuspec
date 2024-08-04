@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>BioSySNet</id>
+    <version>0.0.4</version>
+    <title>C# For Bioinformatics and Biological Data Pre-processing: BioSyS.Net</title>
+    <authors>Aniket Yadav</authors>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="file">LICENSE</license>
+    <licenseUrl>https://aka.ms/deprecateLicenseUrl</licenseUrl>
+    <readme>README.md</readme>
+    <projectUrl>https://github.com/Aniket7651/biosys-net</projectUrl>
+    <description>Bioinformatics is an interdisciplinary field that analyzes biological data using computer science. I have created a new package for bioinformatics and computational analysis built in C#. This package can analyze biological data such as DNA, RNA, and protein sequences, as well as perform tasks such as Biological Database Scraping. Additionally, 'GEO Analysis' offers a variety of analyses for RNA-seq preprocessing, parsing various biological file formats (FASTA, PDB, SOFT, FASTQ, etc.). BioSySNet also utilizes the Python interpreter to run certain plotting functions (i.e., it uses IronPython to execute Python functions, "so first, you need to make sure that Python is installed on your machine").</description>
+    <releaseNotes>Class csvReader has been changed to new name CSVArray.
+The readCSV function of the CSVArray class (formerly known as csvReader) has been renamed to readNumericCSV in this version. This change allows the CSV file to be read as numeric points only.
+A new class feature called ImportData has been added, which allows for importing or reading datasets from CSV, tab, or other delimiter symbols. Additionally, a class called DataFrame has been introduced for dataset handling and manipulations.
+TrainTest_Split function now takes an array of double type as arguments and returns a floating point value.
+ReadSoftFile has been changed to ReadMetaDataBySOFT in the BioFormats class, which is responsible for reading metadata in the SOFT file format.
+Lastly, the ArrayExpression function in the BioFormats class enables access to microarray data from the Gene Expression Omnibus database.</releaseNotes>
+    <tags>Bioinformatics Biological analysis GEO analysis Biological data preprocessingBiological database scrapping</tags>
+    <repository type="git" url="https://github.com/Aniket7651/biosys-net" commit="d42f43643bf16764f166a0d924e71dcd4bb51642" />
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="HtmlAgilityPack" version="1.11.50" exclude="Build,Analyzers" />
+        <dependency id="IronPython" version="3.4.1" exclude="Build,Analyzers" />
+        <dependency id="MathNet.Numerics" version="4.9.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <contentFiles>
+      <files include="any/net6.0/removebg-logo.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\bin\Debug\net6.0\BioSySNet.dll" target="lib\net6.0\BioSySNet.dll" />
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\removebg-logo.ico" target="content\removebg-logo.ico" />
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\removebg-logo.ico" target="contentFiles\any\net6.0\removebg-logo.ico" />
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\LICENSE" target="\LICENSE" />
+    <file src="A:\PROJECTS\C#_Programs\BioSySNet\BioSySNet\README.md" target="\README.md" />
+  </files>
+</package>
